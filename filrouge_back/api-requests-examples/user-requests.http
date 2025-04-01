@@ -1,0 +1,59 @@
+### Enregistrement d'un nouvel utilisateur et connexion
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "pseudo": "Endpoint test",
+  "mail": "storm@mail.fr",
+  "password": "aze123",
+  "birthDate": "1994-03-26"
+}
+
+### Connexion de l'utilisateur (génération du token)
+POST http://localhost:8080/api/auth/authenticate
+Content-Type: application/json
+
+{
+  "mail": "storm@mail.fr",
+  "password": "aze123"
+}
+
+### Récupération des information de l'utilisateur
+GET http://localhost:8080/api/user/407bbb4d-cb8d-4f74-b2cf-1f0160b67f28
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdG9ybUBtYWlsLmZyIiwiZXhwIjoxNzAwMTI3NzAyLCJpYXQiOjE3MDAwNDEzMDJ9.eMFRQdWtvv_-EZIRlEOr13duWcGPX2wDYKfHJFJDTJ8
+
+
+### Modifications des données utilisateur
+PATCH http://localhost:8080/api/user/407bbb4d-cb8d-4f74-b2cf-1f0160b67f28
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdG9ybUBtYWlsLmZyIiwiZXhwIjoxNzAwMTI3NzAyLCJpYXQiOjE3MDAwNDEzMDJ9.eMFRQdWtvv_-EZIRlEOr13duWcGPX2wDYKfHJFJDTJ8
+
+{
+  "pseudo": "Test modifié",
+  "birthDate": "1994-12-31"
+}
+
+### Modification du mot de passe de l'utilisateur
+PATCH http://localhost:8080/api/user/407bbb4d-cb8d-4f74-b2cf-1f0160b67f28/change-password
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG1haWwuZnIiLCJleHAiOjE2OTk3MTA1ODIsImlhdCI6MTY5OTYyNDE4Mn0.CCzgfjjWsRMgX_gpbZSLewA_TJIuZO7x6DnWSObTxXY
+
+{
+  "id": "407bbb4d-cb8d-4f74-b2cf-1f0160b67f28",
+  "password": "qsd456"
+}
+
+
+### Modification des genres favoris de l'utilisateur
+PATCH http://localhost:8080/api/user/genres/e93ce199-bada-4d5e-8d31-cd695ab3a2c6
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdG9ybUBtYWlsLmZyIiwiZXhwIjoxNzAwMzE2NjE4LCJpYXQiOjE3MDAyMzAyMTh9.lfsi000TLLEaLBnH9K39gtsQkgW5RqksMpQXKFmQDjc
+
+{
+  "userId": "0f0c4d2d-93d2-49d4-9f79-8f19f263d9bd",
+  "genreIdList": [2, 12, 17]
+}
+
+### Récupération des recommandations de films/séries pour un utilisateur
+GET http://localhost:8080/api/recommendations/e93ce199-bada-4d5e-8d31-cd695ab3a2c6
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdG9ybUBtYWlsLmZyIiwiZXhwIjoxNzAwMjMzMDk5LCJpYXQiOjE3MDAxNDY2OTl9.wqXWoKQgu_omQfrqkqdGbfJWn9GXUbWo2Ly2szYCzQM

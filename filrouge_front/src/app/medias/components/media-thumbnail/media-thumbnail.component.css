@@ -1,0 +1,33 @@
+:host {
+  min-width: 300px;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  
+  > img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+}
+
+.media-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.media-details p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+

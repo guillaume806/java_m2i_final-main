@@ -1,0 +1,38 @@
+<header>
+  <div class="header" routerLink="/">
+    <div class="logo">
+      <h1>Pop Corn Mania</h1>
+    </div>
+  </div>
+  <nav>
+    <ul>
+      <li (click)="onTypeChange('MOVIE')">Films</li>
+      <li (click)="onTypeChange('SHOW')">Séries</li>
+    </ul>
+
+    <form class="search">
+      <input name="searchInput" type="text" placeholder="Recherche" [(ngModel)]="searchTerm">
+      <button (click)="onTitleSearch()"><img src="/assets/images/search.png" alt="search"></button>
+    </form>
+    <div class="genres">
+      <select class="select-genres" [(ngModel)]="selectedGenre" (change)="onGenreChange()">
+        <option [value]="null">Filtrer par genre...</option>
+        <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+      </select>
+    </div>
+    <div class="buttons" *ngIf="!currentUser; else elseUser">
+      <button class="black-button" routerLink="/auth">Connexion</button>
+    </div>
+  </nav>
+</header>
+
+<ng-template #elseUser>
+  <div class="buttons">
+    <button class="black-button" [routerLink]="['/user', currentUser?.id]">Mon profil</button>
+    <button class="black-button" (click)="onClickLogout()">Déconnexion</button>
+  </div>
+</ng-template>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
